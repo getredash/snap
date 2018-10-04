@@ -1,0 +1,48 @@
+service: snap
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  memorySize: 1536
+  timeout: 180
+  iamRoleStatements:
+   -  Effect: "Allow"
+      Action:
+        - "s3:PutObject"
+        - "s3:PutObjectAcl"
+      Resource: "arn:aws:s3:::cdn-preview.redash.io/*"  
+
+functions:
+  screenshot:
+    handler: index.handler
+    events:
+      - http:
+          path: p/{proxy+}
+          method: get
+    environment:
+      DEBUG: 0
+      HOME: /var/task
+  preview:
+    handler: index.generatePreview
+    events:
+      - http:
+          path: preview
+          method: post
+    environment:
+      DEBUG: 0
+      HOME: /var/task
+
+package:
+  artifact: ./package.zip
+  
+plugins:
+  - serverless-hooks-plugin
+  - serverless-apigw-binary
+
+custom:
+  apigwBinary:
+    types:
+      - '*/*'
+  hooks:
+    package:initialize:
+      - npm run package
