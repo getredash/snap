@@ -1,0 +1,25 @@
+{
+  "name": "snap",
+  "version": "2.0.0",
+  "description": "Puppeteer based microservice to take snapshots (images/PDF) of Redash visualizations and dashboards.",
+  "scripts": {
+    "package": "npm run package-prepare && cp chrome/headless_shell.tar.gz dist && cd dist && zip -rq ../package.zip .",
+    "package-nochrome": "npm run package-prepare && cd dist && zip -rq ../package.zip .",
+    "package-prepare": "npm run lint && npm run babel && cp -r package.json dist && cp -r fonts dist/.fonts && cd dist && npm install --production",
+    "babel": "./node_modules/.bin/babel src --out-dir dist",
+    "lint": "./node_modules/.bin/eslint src",
+    "start": "cp -r ./node_modules dist && npm run babel && node ./dist/server.js"
+  },
+  "dependencies": {
+    "express": "4",
+    "fsevents": "1",
+    "puppeteer": "^1.9.0",
+    "tar": "4"
+  },
+  "devDependencies": {
+    "babel-cli": "6",
+    "babel-preset-env": "1",
+    "eslint": "5",
+    "eslint-config-google": "0.10"
+  }
+}
