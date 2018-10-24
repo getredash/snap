@@ -11,13 +11,14 @@
     "start": "cp -r ./node_modules dist && npm run babel && node ./dist/server.js"
   },
   "dependencies": {
+    "config": "^2.0.1",
     "express": "4",
     "fsevents": "1",
     "puppeteer": "^1.9.0",
     "tar": "4"
   },
   "devDependencies": {
-    "babel-cli": "6",
+    "babel-cli": "^6.26.0",
     "babel-preset-env": "1",
     "eslint": "5",
     "eslint-config-google": "0.10"

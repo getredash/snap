@@ -1,8 +1,11 @@
 import puppeteer from 'puppeteer';
 import restyleQuery from '../styling/query';
+import config from 'config'
+
+const baseUrl = config.get('redash.baseUrl');
 
 export async function queryPng(queryId, visualizationId, apiKey) {
-  const url = `http://localhost:8080/embed/query/${queryId}/visualization/${visualizationId}?api_key=${apiKey}`;
+  const url = `${baseUrl}/embed/query/${queryId}/visualization/${visualizationId}?api_key=${apiKey}`;
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.setViewport({width: 900, height: 50});

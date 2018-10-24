@@ -8,9 +8,7 @@ app.get('/dashboard/:dashboardId.pdf', async (req, res) => {
   try {
     const dashboardId = req.params.dashboardId;
     const apiKey = req.query.apiKey;
-    console.log(`Trying to generate PDF for dashboard ${dashboardId}`);
     const data = await dashboardPdf(dashboardId, apiKey);
-    console.log(`Sending data`);
     res.type('pdf');
     res.send(data);
   } catch (error) {
@@ -18,7 +16,7 @@ app.get('/dashboard/:dashboardId.pdf', async (req, res) => {
   }
 });
 
-app.get('/query/:queryId.png', async (req, res) => {
+app.get('/query/:queryId/:visualizationId.png', async (req, res) => {
   try {
     const queryId = req.params.queryId;
     const visualizationId = req.params.visualizationId;
