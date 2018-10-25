@@ -4,6 +4,11 @@ import config from 'config';
 
 const baseUrl = config.get('redash.baseUrl');
 
+if (config.has('customScriptUri')) {
+  const customScriptUri = config.get('customScriptUri');
+  var custom = require(customScriptUri);
+}
+
 export async function dashboardPdf(dashboardId, apiKey) {
   const url = `${baseUrl}/dashboard/${dashboardId}`;
   const browser = await puppeteer.launch();
@@ -11,7 +16,12 @@ export async function dashboardPdf(dashboardId, apiKey) {
   await page.setExtraHTTPHeaders({"Authorization": apiKey})
   await page.goto(url, {waitUntil: 'networkidle2'});
   await page.evaluate(restyleDashboard);
-  const data = await page.pdf({format: 'A4'});
+
+  if (custom && custom.restyleDashboard) {
+    await page.evaluate(custom.restyleDashboard);
+  }
+  
+  const data = await page.pdf();
   await page.close();
   return data;
 }
