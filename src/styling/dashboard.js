@@ -27,5 +27,4 @@ export default function restyleDashboard() {
     tiles[0].style.marginBottom = '0px';
   }
   toggleClass('visible-print');
-
 }

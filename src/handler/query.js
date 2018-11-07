@@ -1,13 +1,9 @@
 import puppeteer from 'puppeteer';
 import restyleQuery from '../styling/query';
-import config from 'config'
+import config from 'config';
 
 const baseUrl = config.get('redash.baseUrl');
-
-if (config.has('customScriptUri')) {
-  const customScriptUri = config.get('customScriptUri');
-  var custom = require(customScriptUri);
-}
+let custom;
 
 export async function queryPng(queryId, visualizationId, apiKey) {
   const url = `${baseUrl}/embed/query/${queryId}/visualization/${visualizationId}?api_key=${apiKey}`;
@@ -17,10 +13,6 @@ export async function queryPng(queryId, visualizationId, apiKey) {
   await page.goto(url, {waitUntil: 'networkidle0'});
   await page.evaluate(restyleQuery);
 
-  if (custom && custom.restyleQuery) {
-    await page.evaluate(custom.restyleQuery);
-  }
-  
   const data = await page.screenshot({fullPage: true});
   await page.close();
   return data;

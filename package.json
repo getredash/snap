@@ -2,25 +2,27 @@
   "name": "snap",
   "version": "2.0.0",
   "description": "Puppeteer based microservice to take snapshots (images/PDF) of Redash visualizations and dashboards.",
-  "scripts": {
-    "package": "npm run package-prepare && cp chrome/headless_shell.tar.gz dist && cd dist && zip -rq ../package.zip .",
-    "package-nochrome": "npm run package-prepare && cd dist && zip -rq ../package.zip .",
-    "package-prepare": "npm run lint && npm run babel && cp -r package.json dist && cp -r fonts dist/.fonts && cd dist && npm install --production",
-    "babel": "./node_modules/.bin/babel src --out-dir dist",
-    "lint": "./node_modules/.bin/eslint src",
-    "start": "cp -r ./node_modules dist && npm run babel && node ./dist/server.js"
-  },
   "dependencies": {
+    "@serverless-chrome/lambda": "^1.0.0-55",
+    "chrome-remote-interface": "^0.26.1",
     "config": "^2.0.1",
-    "express": "4",
-    "fsevents": "1",
-    "puppeteer": "^1.9.0",
-    "tar": "4"
+    "express": "^4.16.4",
+    "puppeteer": "^1.10.0",
+    "serverless-http": "^1.8.0",
+    "superagent": "^4.0.0-beta.5"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-env": "1",
-    "eslint": "5",
-    "eslint-config-google": "0.10"
+    "babel-loader": "^8.0.4",
+    "babel-preset-env": "^1.7.0",
+    "chrome-launcher": "^0.10.5",
+    "eslint": "^5.8.0",
+    "eslint-config-google": "^0.11.0",
+    "serverless-plugin-chrome": "^1.0.0-55",
+    "serverless-offline": "^3.31.0",
+    "serverless-webpack": "^5.2.0",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-node-externals": "^1.7.2"
   }
 }

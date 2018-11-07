@@ -1,0 +1,33 @@
+service: snap
+
+plugins:
+  - serverless-plugin-chrome
+  - serverless-offline
+  - serverless-webpack
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  memorySize: 1536
+  timeout: 180
+
+functions:
+  app:
+    handler: src/serverless.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+    environment:
+      DEBUG: 0
+      HOME: /var/task
+
+resources:
+  Resources:
+    ApiGatewayRestApi:
+      Properties:
+        BinaryMediaTypes:
+          - "*/*"
+
+custom:
+  webpack:
+    includeModules: true

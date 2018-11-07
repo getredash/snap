@@ -1,3 +1,3 @@
 import {app} from './index';
 
-app.listen(8081, () => console.log(`Example app listening on port 8081!`));
+app.listen(8081, () => console.log(`Snap service started on port 8081!`));
