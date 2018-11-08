@@ -1,6 +1,6 @@
 {
+    "port": 8081,
     "redash": {
-        "baseUrl": "http://10.10.3.104:5000"
-    },
-    "_customScriptUri": "/home/ok/Source/dignati/snap/config/custom1.js"
+        "baseUrl": "http://localhost:5000"
+    }
 }

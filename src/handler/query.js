@@ -3,7 +3,6 @@ import restyleQuery from '../styling/query';
 import config from 'config';
 
 const baseUrl = config.get('redash.baseUrl');
-let custom;
 
 export async function queryPng(queryId, visualizationId, apiKey) {
   const url = `${baseUrl}/embed/query/${queryId}/visualization/${visualizationId}?api_key=${apiKey}`;

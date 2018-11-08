@@ -4,13 +4,11 @@ import config from 'config';
 import {getChrome} from '../chrome/setup';
 
 const baseUrl = config.get('redash.baseUrl');
-let custom;
 
 export async function dashboardPdf(dashboardId, apiKey) {
   const url = `${baseUrl}/dashboard/${dashboardId}`;
   const chrome = await getChrome();
   const browser = await puppeteer.connect({browserWSEndpoint: chrome.endpoint});
-  // const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.setExtraHTTPHeaders({'Authorization': apiKey});
   await page.goto(url, {waitUntil: 'networkidle2'});

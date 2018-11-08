@@ -1,3 +1,9 @@
 import {app} from './index';
+import config from 'config';
 
-app.listen(8081, () => console.log(`Snap service started on port 8081!`));
+let port = 7635;
+if (config.has('port')) {
+    port = config.get('port');
+}
+
+app.listen(port, () => console.log(`Snap service started on port ${port}!`));

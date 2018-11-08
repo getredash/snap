@@ -6,7 +6,6 @@ plugins:
   - serverless-webpack
   - serverless-apigw-binary
 
-
 provider:
   name: aws
   runtime: nodejs8.10
