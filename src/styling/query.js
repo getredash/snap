@@ -1,6 +1,6 @@
 export default function restyleQuery() {
   function iterateElements(className, fn) {
-    let elements = document.getElementsByClassName(className);
+    const elements = document.getElementsByClassName(className);
     for (let i = 0; i < elements.length; ++i) {
       fn(elements[i]);
     }

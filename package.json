@@ -3,7 +3,8 @@
   "version": "2.0.0",
   "description": "Puppeteer based microservice to take snapshots (images/PDF) of Redash visualizations and dashboards.",
   "scripts": {
-    "start": "webpack && node dist/server.js"
+    "start": "webpack && node dist/server.js",
+    "lint": "eslint src"
   },
   "dependencies": {
     "@serverless-chrome/lambda": "^1.0.0-55",
@@ -19,14 +20,14 @@
     "babel-loader": "^8.0.4",
     "babel-preset-env": "^1.7.0",
     "chrome-launcher": "^0.10.5",
-    "eslint-config-google": "^0.11.0",
     "eslint": "^5.8.0",
+    "eslint-config-google": "^0.11.0",
     "serverless-apigw-binary": "^0.4.4",
     "serverless-offline": "^3.31.0",
     "serverless-plugin-chrome": "^1.0.0-55",
     "serverless-webpack": "^5.2.0",
+    "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
-    "webpack-node-externals": "^1.7.2",
-    "webpack": "^4.25.1"
+    "webpack-node-externals": "^1.7.2"
   }
 }

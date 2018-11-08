@@ -13,7 +13,7 @@ export async function dashboardPdf(dashboardId, apiKey) {
   await page.setExtraHTTPHeaders({'Authorization': apiKey});
   await page.goto(url, {waitUntil: 'networkidle2'});
   await page.evaluate(restyleDashboard);
-  
+
   const data = await page.pdf();
   await page.close();
   return data;
