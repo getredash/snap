@@ -5,6 +5,13 @@ import {getChrome} from '../chrome/setup';
 
 const baseUrl = config.get('redash.baseUrl');
 
+let custom;
+try {
+  custom = require('redash_restyle_dashboard.js');
+} catch (e) {
+  custom = undefined;
+}
+
 export async function dashboardPdf(dashboardId, apiKey) {
   const url = `${baseUrl}/dashboard/${dashboardId}`;
   const chrome = await getChrome();
@@ -13,7 +20,9 @@ export async function dashboardPdf(dashboardId, apiKey) {
   await page.setExtraHTTPHeaders({'Authorization': apiKey});
   await page.goto(url, {waitUntil: 'networkidle2'});
   await page.evaluate(restyleDashboard);
-
+  if (custom) {
+    await page.evaluate(custom.default);
+  }
   const data = await page.pdf();
   await page.close();
   return data;

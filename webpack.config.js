@@ -8,7 +8,7 @@ entries.server = './src/server.js';
 module.exports = {
 	entry: entries,
 	target: 'node',
-	externals: [nodeExternals()],
+	externals: [nodeExternals(), 'redash_restyle_dashboard.js', 'redash_restyle_query.js'],
 	mode: slsw.lib.webpack.isLocal ? "development" : "production",
 	output: {
 		path: path.resolve(__dirname, 'dist'),
