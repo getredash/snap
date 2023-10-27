@@ -11,7 +11,7 @@
     "lint": "./node_modules/.bin/eslint src"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^1.6.0",
     "puppeteer": "^1.1.1",
     "randomstring": "^1.1.5",
     "tar": "^4.0.1"
